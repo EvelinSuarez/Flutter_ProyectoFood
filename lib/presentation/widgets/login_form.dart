@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import '../screens/landing_page_screen.dart'; // Asegúrate de importar la LandingPageScreen
+
+// Aquí podrías importar las pantallas de destino.
+import '../screens/landing_page_screen.dart';  // Asegúrate de tener esta clase
+import '../screens/index_empleado.dart';   // Asegúrate de tener esta clase
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({super.key});
@@ -17,11 +20,28 @@ class _LoginWidgetState extends State<LoginWidget> {
   bool _passwordVisible = false;
 
   // Función de validación de credenciales
-  bool _validateCredentials(String username, String password) {
+  void _validateCredentials(String username, String password) {
     // Aquí puedes agregar tu lógica de autenticación (API, Firebase, etc.)
-    // Por ahora, usaremos credenciales estáticas.
-    return username == "admin" &&
-        password == "1234"; // Usuario y contraseña de ejemplo
+    // Ahora vamos a redirigir a diferentes pantallas según las credenciales.
+
+    if (username == "admin" && password == "1234") {
+      // Si es un administrador, redirige a la página del administrador
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const LandingPageScreen()),
+      );
+    } else if (username == "user" && password == "abcd") {
+      // Si es un usuario común, redirige a la página de usuario
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const PaginaEmpleadosWidget()),
+      );
+    } else {
+      // Si las credenciales son incorrectas, mostrar un mensaje de error
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Credenciales incorrectas')),
+      );
+    }
   }
 
   @override
@@ -45,7 +65,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                     shape: BoxShape.circle,
                   ),
                   child: Image.asset(
-                    '../../assets/images/IconoFIP.png', // Asegúrate de tener esta imagen en tu proyecto
+                    'assets/images/IconoFIP.png', // Asegúrate de tener esta imagen en tu proyecto
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -118,23 +138,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                               String password = _passwordController.text;
 
                               // Validar las credenciales
-                              if (_validateCredentials(username, password)) {
-                                // Si las credenciales son correctas, navegar a la pantalla de inicio
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const LandingPageScreen(),
-                                  ),
-                                );
-                              } else {
-                                // Mostrar un mensaje de error si las credenciales son incorrectas
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                      content:
-                                          Text('Credenciales incorrectas')),
-                                );
-                              }
+                              _validateCredentials(username, password);
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor:

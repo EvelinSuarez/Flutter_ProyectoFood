@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../widgets/notification_card.dart';
-import '../widgets/order_column.dart';
 
 class LandingPageScreen extends StatelessWidget {
   const LandingPageScreen({super.key});
@@ -29,7 +28,6 @@ class LandingPageScreen extends StatelessWidget {
               children: [
                 NotificationCard(),
                 SizedBox(height: 20),
-                OrderColumn(),
               ],
             ),
           ),
