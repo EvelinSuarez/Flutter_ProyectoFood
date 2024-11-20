@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart'; // Importamos TableCalendar
-import '../screens/reservation_form.dart';
+import 'reservation_form.dart';
 
 // Pantalla de creación de reserva (Formulario)
 class CreateReservationPage extends StatelessWidget {
