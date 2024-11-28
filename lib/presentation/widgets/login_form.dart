@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // Aquí podrías importar las pantallas de destino.
-import '../screens/landing_page_screen.dart';  // Asegúrate de tener esta clase
+import '../widgets/order_column.dart';  // Asegúrate de tener esta clase
 import '../screens/index_empleado.dart';   // Asegúrate de tener esta clase
 
 class LoginWidget extends StatefulWidget {
@@ -28,7 +28,7 @@ class _LoginWidgetState extends State<LoginWidget> {
       // Si es un administrador, redirige a la página del administrador
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const LandingPageScreen()),
+        MaterialPageRoute(builder: (context) => const PaginaPrincipalWidget()),
       );
     } else if (username == "user" && password == "abcd") {
       // Si es un usuario común, redirige a la página de usuario
